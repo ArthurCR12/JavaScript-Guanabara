@@ -20,7 +20,7 @@ section{
 
     & #info{
         padding: 10px;        
-        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.445); 
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.200); 
 
         /* Firefox */
         & input[type=number]{
