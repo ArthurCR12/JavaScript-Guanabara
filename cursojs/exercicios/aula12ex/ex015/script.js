@@ -64,6 +64,9 @@ function verificar() {
         else if (idade > 60 && idade < 160 && sexo == 'Homem') {
             frase.innerHTML = `Detectamos um ${sexo}  ${idade} Anos`
             img.src = 'img/idoso.png'
+        } else{
+            frase.innerHTML = `Idade de ${idade} é invalida!`
+            img.src = ''
         }
     }
 }
