@@ -1,66 +1,71 @@
-let numeros = []
-function adicionar() {
-    let n = document.getElementById('itxt-num')
-    let selc = document.getElementById('iselect')
-    let addNum = document.createElement('option')
-    let div = document.getElementById('resultado')
-    div.innerHTML = ''
-    let num = Number(n.value)    
-    if (num < 1 || num > 100)
-        alert('Informe um número entre 1 e 100')
-    else if(numeros.includes(num)){
-        alert(`Número ${num} ja foi inserido !`)
-
-    }
-    else {
-       numeros.push(num)
-       addNum.text = `Valor ${num} adicionado`
-       selc.appendChild(addNum)
-    }
-}
-
-function finalizar() {    
-    let p = document.createElement('p')
-    let div = document.getElementById('resultado')
-    div.innerHTML = ''
-    let nmaior = 0
-    let nmenor = 100
-    for(c = 0; c < numeros.length; c++){
-        if(nmaior < numeros[c]){
-            nmaior = numeros[c]
-        }
-        if (nmenor > numeros[c]) {
-            nmenor = numeros[c];
-        }
-    }
-
-    let soma = 0
-    for(c=0;c<numeros.length;c++){
-        soma += numeros[c]
-    }
-
-    media = soma / numeros.length
-
-
-    p.textContent = `Ao todo, temos ${numeros.length} números cadastrados.`
-    div.append(p)
-    p = document.createElement('p');
-    p.textContent = `O maior valor informado foi de ${nmaior}`
-    div.append(p)
-    p = document.createElement('p');
-    p.textContent = `O menor valor informado foi de ${nmenor}`
-    div.append(p)
-    p = document.createElement('p');
-    p.textContent = `Somandos todos os valores, temos ${soma}`
-    div.append(p)
-    p = document.createElement('p');
-    p.textContent = `A média dos valores digitados é ${media}`
-    div.append(p)
-}
+let num = document.getElementById('itxt-num')
+let lista = document.getElementById('iselect')
+let res = document.querySelector('div#resultado')
+let valores = []
 
 function limpar(){
-    document.getElementById('resultado').value = ''
-    document.getElementById('iselect').value = ''
-    document.getElementById('itxt-num').value = ''
-    
+    num.value = ''
+    lista.innerHTML = ''
+    res.innerHTML = ''
+    num.focus()
+}
+
+function isNumero(n) {
+    if (Number(n) >= 1 && Number(n) <= 100) {
+        return true
+    } else {
+        return false
+    }
+}
+function inLista(n, l) {
+    if (l.indexOf(Number(n)) != -1) {
+        return true
+    } else {
+        return false
+    }
+}
+
+function adicionar() {
+    // !inLista tem aquele ! na frente pra vericar o false
+    if (isNumero(num.value) && !inLista(num.value, valores)) {
+        res.innerHTML = ''
+        valores.push(Number(num.value))
+        let item = document.createElement('option')
+        item.text = `Valor ${num.value} adicionado`
+        lista.appendChild(item)
+    } else {
+        alert('Valor inválido ou ja encontrado na lista.')
+    }
+    num.value = ''
+    num.focus()
+}
+
+function finalizar() {
+    if (valores.length == 0) {
+        window.alert('Adicione valores antes de finalizar !')
+    } else {
+        let tot = valores.length
+        let maior = valores[0]
+        let menor = valores[0]
+        let soma = 0
+        let media = 0
+
+        for (let pos in valores) {
+            soma += valores[pos]
+            if (valores[pos] > maior) {
+                maior = valores[pos]
+            }
+            if (valores[pos] < menor) {
+                menor = valores[pos]
+            }
+        }
+
+        media = soma / tot
+        res.innerHTML = ''
+        res.innerHTML += `<p>Ao todo, temos ${tot} números cadastrados.</p>`
+        res.innerHTML += `<p>O maior valor informado foi ${maior}</p>`
+        res.innerHTML += `<p>O menor valor informado foi ${menor}</p>`
+        res.innerHTML += `<p>Somando todos os valores, temos ${soma}</p>`
+        res.innerHTML += `<p>A média dos valores digitados é ${media}</p>`        
+    }
 }
