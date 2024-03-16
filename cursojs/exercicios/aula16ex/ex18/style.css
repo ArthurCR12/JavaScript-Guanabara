@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+body{
+    background-color: rgb(70, 142, 236);
+    font:  normal 1.3em Arial;
+    color: white;
+}
+header{
+    text-align: center;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.692);
+}
+section{
+    color: black;
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    width: 500px;
+    margin: 0 auto;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.432);
+
+    
+     
+    & #iselect{
+        background-color: rgb(207, 205, 205);       
+        width: 99%;
+        text-align: center;
+        font-size: .7em;
+        border: 1px solid black;
+        border-radius: 10px;
+
+        & option{
+            margin-bottom: 10px;
+        }
+    }
+
+    & #itxt-num{
+        height: 25px;
+        margin-bottom: 15px;
+    }
+
+    & #add{
+        width: 20%;        
+        height: 30px;
+    }
+
+    & .btn{
+        margin-top: 10px;
+        width: 99%;
+        height: 30px;
+    }
+}
+footer{
+    text-align: center;
+    text-decoration: underline;
+    font-style: italic;    
+}
